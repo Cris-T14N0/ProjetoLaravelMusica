@@ -44,11 +44,12 @@
 
                             
                             <div class = "d-flex flex-row ">
-                                <a href="{{route('categoria.edit',$musica->id)}}" class = "btn btn-sm btn-warning">Edit</a>
+                                
+                                <a href="{{route('musicas.edit',$musica->id)}}" class = "btn btn-sm btn-warning">Edit</a>
 
                                 <!-- É necessário trasnformar este botão em num form porque em Laravel ele está à espera de um método POST
                                 e com um link normal estamos a usar GET.   -->
-                                <form action="{{route('categoria.destroy',$musica->id)}}" method="post">
+                                <form action="{{route('musicas.destroy',$musica->id)}}" method="post">
                                     @csrf
                                     @method('delete')
 

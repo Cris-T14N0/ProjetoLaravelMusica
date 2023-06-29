@@ -29,7 +29,26 @@ class MusicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validar
+        $request->validate(['musica' => 'required|max:255',]);
+        $request->validate(['autor' => 'required|max:255',]);
+        $request->validate(['duracao' => 'required|max:255',]);
+
+        $dados = $request -> all();
+
+        //Criar Instância
+        $musica = new Musica();
+
+        //Preparar Valores
+        $musica->musica = $dados['musica'];
+        $musica->autor = $dados['musica'];
+        $musica->duracao = $dados['musica'];
+
+        //Gravar na BD
+        $musica->save();
+
+        //Reencaminhar
+        return redirect()->route('musicas.index');
     }
 
     /**
@@ -45,7 +64,8 @@ class MusicaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $musica = Musica::findOrFail($id);
+        return view('musicas.edit',compact('musica'));
     }
 
     /**
@@ -53,7 +73,17 @@ class MusicaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //Validar
+        $request->validate(['musica' => 'required|max:255',]);
+        $request->validate(['autor' => 'required|max:255',]);
+        $request->validate(['duracao' => 'required|max:255',]);
+
+        $dados = $request -> all();
+
+        Musica::where('id',$id)->update(['musica' => $dados['musica'],]);
+
+        //Reencaminhar
+        return redirect()->route('musicas.index');
     }
 
     /**
@@ -61,6 +91,10 @@ class MusicaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //Localizar e eliminar
+        Musica::where('id',$id)->delete();
+
+        //Reencaminhar
+        return redirect()->route('musicas.index');
     }
 }

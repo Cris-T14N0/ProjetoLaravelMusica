@@ -16,8 +16,6 @@
             <h5 class="card-subtitle mb-2 text-body-secondary">Deseja ver a lista de musicas guardadas numa base de dados que eu criei?</h5>
 
             <a href="{{ route('musicas.index')}}" class = "btn btn-success">Sim</a>
-
-            <button type="button" class="btn btn-danger">Não</button>
         </div>
     </div>
 </body>
